@@ -1,0 +1,38 @@
+body {
+    background-image: url(https://www.salirconarte.com/wp-content/uploads/2017/06/orig_64571.jpg)
+}
+
+.custom-form-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    ;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.custom-form-control {
+    width: 70%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Agrega la sombra */
+}
+
+.custom-form-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.custom-checkbox-label {
+    font-size: 0.875rem;
+    font-weight: 400;
+}
+
+.custom-btn {
+    font-size: 0.875rem;
+    padding: 0.375rem 0.75rem;
+}
+
+.custom-username-field {
+    width: 70%;
+    max-width: 300px;
+}

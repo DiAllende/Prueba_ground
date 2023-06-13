@@ -1,0 +1,34 @@
+#vistaConfirmacion, #vistaMensaje {
+    background-color: #ffffff; /* Establece el fondo en blanco */
+    padding: 20px; /* Agrega un relleno de 20 píxeles alrededor del contenido */
+    box-sizing: border-box; /* Asegura que el relleno no afecte el ancho del elemento */
+    max-width: 100%; /* Establece el ancho máximo del elemento en el 100% del ancho disponible */
+    margin: 0 auto; /* Centra el elemento horizontalmente */
+  }
+
+  #vistaMensaje{
+    width: 80%;
+  }
+  /* Crea reglas de estilo adicionales para pantallas más pequeñas */
+  
+  /* Para pantallas de tamaño pequeño (hasta 600 píxeles de ancho) */
+  @media only screen and (max-width: 600px) {
+    #vistaConfirmacion, #vistamensaje {
+      padding: 10px; /* Reduce el relleno a 10 píxeles */
+    }
+  }
+  
+  /* Para pantallas de tamaño mediano (entre 600 y 992 píxeles de ancho) */
+  @media only screen and (min-width: 600px) and (max-width: 992px) {
+    #vistaConfirmacion, #vistamensaje {
+      max-width: 90%; /* Reduce el ancho máximo del elemento al 90% */
+    }
+  }
+  
+  /* Para pantallas de tamaño grande (más de 992 píxeles de ancho) */
+  @media only screen and (min-width: 992px) {
+    #vistaConfirmacion, #vistamensaje {
+      max-width: 70%; /* Reduce el ancho máximo del elemento al 70% */
+    }
+  }
+  

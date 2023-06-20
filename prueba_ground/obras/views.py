@@ -42,3 +42,4 @@ def borrar_obra(request, pk):
     obra.delete()
     return redirect('obras')
 
+

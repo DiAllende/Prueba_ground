@@ -25,7 +25,7 @@ urlpatterns = [
     path('', include('registro.urls')),
     path('', include('obras.urls')),
     path('admin/', admin.site.urls),
-    path('', views.ObrasListView.as_view(), name='obras'),
+    path('obras/', views.ObrasListView.as_view(), name='obras'),    
 ]
 
 if settings.DEBUG:

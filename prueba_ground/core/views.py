@@ -16,5 +16,5 @@ def detalles_obra(request, pk):
 
 class ObrasListView(ListView):
     model = Obras
-    template_name = 'core/home.html'
+    template_name = 'obras/obras.html'
     context_object_name = 'obras'

@@ -1,3 +1,4 @@
+from msilib.schema import ListView
 from django.shortcuts import get_object_or_404, render, redirect
 
 from obras.form import CreateObraForm, UpdateObraForm
@@ -40,3 +41,5 @@ def borrar_obra(request, pk):
     obra = get_object_or_404(Obras, pk=pk)
     obra.delete()
     return redirect('obras')
+
+

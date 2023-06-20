@@ -40,136 +40,40 @@
   </div>
   <!-- FIN CAROUSEL -->
   <!-- PRODUCTOS -->
-  <div class="container text-center">
+<div class="container text-center">
     <div class="row">
-      <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-        <h2 class="sr-only">Products</h2>
-        <div>
-          <h6 class="row" style="margin-left: 20px; font-size: 40; padding-bottom: 50px;">Obras con mayor venta</h6>
+        <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+            <h2 class="sr-only">Products</h2>
+            <div>
+                <h6 class="row" style="margin-left: 20px; font-size: 40; padding-bottom: 50px;">Obras con mayor venta</h6>
+            </div>
+            <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+                {% for obra in obras|slice:":3" %}
+                    <div class="col" style="padding-bottom: 100px;">
+                        <a href="{% url 'details_obra' obra.pk %}" class="group">
+                            <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+                                <img src="{{ obra.image.url }}" alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." class="h-full w-full object-cover object-center group-hover:opacity-75">
+                            </div>
+                            <h3 class="mt-4 text-sm text-gray-700">{{ obra.Nombre }}</h3>
+                            <h3>{{ obra.Autor }}</h3>
+                            <p class="mt-1 text-lg font-medium text-gray-900">${{ obra.Precio }} clp.</p>
+                        </a>
+                    </div>
+                {% endfor %}
+                    <div class="col" style="padding-bottom: 100px;">
+                        <a href="{% url 'obras'%}" class="group">
+                            <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+                                <img src="{% static 'core/imagenes/plus.png'%}" alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." class="h-full w-full object-cover object-center group-hover:opacity-75">
+                            </div>
+                            <p class="mt-1 text-lg font-medium text-gray-900">Ver mas obras.</p>
+                        </a>
+                    </div>
+            </div>
         </div>
-        <!--obra 1-->
-        <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-          <div class="col" style="padding-bottom: 100px;">
-            <a href="obra_uno.html" class="group">
-              <div
-                class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1200px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"
-                  alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
-                  class="h-full w-full object-cover object-center group-hover:opacity-75">
-              </div>
-              <h3 class="mt-4 text-sm text-gray-700">"La noche estrellada"</h3>
-              <h3>Van Gogh</h3>
-              <p class="mt-1 text-lg font-medium text-gray-900">$380.000 clp.</p>
-            </a>
-          </div>
-          <!--obra 2-->
-          <div class="col" style="padding-bottom: 100px;">
-            <a href="obra_dos.html" class="group">
-              <div
-                class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-                <img
-                  src="https://www.todocuadros.es/media/catalog/product/cache/1/small_image/450x450/040ec09b1e35df139433887a97daa66f/p/i/picasso-nino-paloma.jpg"
-                  alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                  class="h-full w-full object-cover object-center group-hover:opacity-75">
-              </div>
-              <h3 class="mt-4 text-sm text-gray-700">"Niño come palomas"</h3>
-              <h3>Picasso</h3>
-              <p class="mt-1 text-lg font-medium text-gray-900">$400.000 clp.</p>
-            </a>
-          </div>
-          <!--obra 3-->
-          <div class="col" style="padding-bottom: 100px;">
-            <a href="obra_cinco.html" class="group">
-              <div
-                class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-                <img
-                  src="https://historia.nationalgeographic.com.es/medio/2018/06/11/01-mona-lisa-marco-gioconda-louvre_2d7f91a1.jpg"
-                  alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                  class="h-full w-full object-cover object-center group-hover:opacity-75">
-              </div>
-              <h3 class="mt-4 text-sm text-gray-700">"La Guioconda"</h3>
-              <h3>Leonardo da Vinci</h3>
-              <p class="mt-1 text-lg font-medium text-gray-900">$1.000.000 clp.</p>
-            </a>
-          </div>
-          <!--obra 4-->
-          <div class="col" style="padding-bottom: 100px;">
-            <a href="obra_seis.html" class="group">
-              <div
-                class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-                <img
-                  src="https://www.infobae.com/new-resizer/SpFw6OwHmQnZ7W1XebfL_jrFcYw=/992x441/filters:format(webp):quality(85)/s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2017/04/26120438/Guernica-Pablo-Picasso-pintura-obra-1920-1024x503.jpg"
-                  alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                  class="h-full w-full object-cover object-center group-hover:opacity-75">
-              </div>
-              <h3 class="mt-4 text-sm text-gray-700">"El Gernica"</h3>
-              <h3>Pablo Picasso</h3>
-              <p class="mt-1 text-lg font-medium text-gray-900">$2.000.000 clp.</p>
-            </a>
-          </div>
-          <!--obra 5-->
-          <div class="col" style="padding-bottom: 100px;">
-            <a href="obra_siete.html" class="group">
-              <div
-                class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-                <img
-                  src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/painting-titled-the-birth-of-venus-by-sandro-botticelli-news-photo-1652351940.jpg?resize=768:*"
-                  alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                  class="h-full w-full object-cover object-center group-hover:opacity-75">
-              </div>
-              <h3 class="mt-4 text-sm text-gray-700">"El nacimiento de venus"</h3>
-              <h3>Sandro Botticell</h3>
-              <p class="mt-1 text-lg font-medium text-gray-900">$1.500.000 clp.</p>
-            </a>
-          </div>
-          <!--obra 6-->
-          <div class="col" style="padding-bottom: 100px;">
-            <a href="obra_ocho.html" class="group">
-              <div
-                class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-                <img
-                  src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/one-of-several-versions-of-the-painting-the-scream-by-the-news-photo-1652351980.jpg?resize=768:*"
-                  alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                  class="h-full w-full object-cover object-center group-hover:opacity-75">
-              </div>
-              <h3 class="mt-4 text-sm text-gray-700">"El grito"</h3>
-              <h3>Edvard Munch</h3>
-              <p class="mt-1 text-lg font-medium text-gray-900">$2.200.000 clp.</p>
-            </a>
-          </div>
-          <!--obra 7-->
-          <div class="col" style="padding-bottom: 100px;">
-            <a href="obra_tres.html" class="group">
-              <div
-                class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-                <img src="https://www.todocuadros.es/imagenes/pintores/velazquez/cuadro-las-meninas-velazquez.jpg"
-                  alt="Person using a pen to cross a task off a productivity paper card."
-                  class="h-full w-full object-cover object-center group-hover:opacity-75">
-              </div>
-              <h3 class="mt-4 text-sm text-gray-700">"Las meninas"</h3>
-              <h3>Diego Velázquez</h3>
-              <p class="mt-1 text-lg font-medium text-gray-900">$600.000 clp.</p>
-            </a>
-          </div>
-          <!--obra 8-->
-          <div class="col" style="padding-bottom: 100px;">
-            <a href="obra_cuatro.html" class="group">
-              <div
-                class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-                <img src="https://www.jotdown.es/wp-content/uploads/2015/04/20.jpg"
-                  alt="Hand holding black machined steel mechanical pencil with brass tip and top."
-                  class="h-full w-full object-cover object-center group-hover:opacity-75">
-              </div>
-              <h3 class="mt-4 text-sm text-gray-700">"La joven de la perla"</h3>
-              <h3>Johannes Vermeer</h3>
-              <p class="mt-1 text-lg font-medium text-gray-900">$600.000 clp.</p>
-            </a>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
+
+
   <!-- FIN PRODUCTOS -->
   <!-- Mas Productos-->
   <div class="container text-center">

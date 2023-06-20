@@ -14,5 +14,7 @@
         <p>Año: {{ obra.Anio }}</p>
         <p>Detalles de la obra: {{ obra.Detalles_obra }}</p>
         <img src="{{ obra.image.url }}" alt="{{ obra.Nombre }}">
+        <a href="{% url 'update_obra' obra.pk %}" class="btn btn-primary">Actualizar</a>
+        <a href="{% url 'obras' %}" class="btn btn-primary">Volver</a>
     </div>
 {% endblock %}

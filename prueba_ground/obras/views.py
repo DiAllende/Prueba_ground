@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
 
-from obras.form import CreateObraForm
+from obras.form import CreateObraForm, UpdateObraForm
 from .models import Obras
 import os
 
@@ -22,3 +22,16 @@ def crear_elemento(request):
 def detalle_obra(request, pk):
     obra = get_object_or_404(Obras, pk=pk)
     return render(request, 'obras/details_obra.html', {'obra': obra})
+
+def update_obra(request, pk):
+    obra = get_object_or_404(Obras, pk=pk)
+
+    if request.method == 'POST':
+        form = UpdateObraForm(request.POST, request.FILES, instance=obra)
+        if form.is_valid():
+            form.save()
+            return redirect('details_obra', pk=pk)
+    else:
+        form = UpdateObraForm(instance=obra)
+
+    return render(request, 'obras/update_obra.html', {'form': form})

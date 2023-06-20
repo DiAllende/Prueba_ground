@@ -15,6 +15,16 @@
         <p>Detalles de la obra: {{ obra.Detalles_obra }}</p>
         <img src="{{ obra.image.url }}" alt="{{ obra.Nombre }}">
         <a href="{% url 'update_obra' obra.pk %}" class="btn btn-primary">Actualizar</a>
+        <a href="#" class="btn btn-primary" onclick="confirmarBorrado()">Borrar obra</a>
         <a href="{% url 'obras' %}" class="btn btn-primary">Volver</a>
     </div>
+
+    <script>
+        function confirmarBorrado() {
+            if (confirm("¿Estás seguro de que deseas borrar esta obra?")) {
+                // Si se confirma, redirecciona a la URL de borrado
+                window.location.href = "{% url 'borrar_obra' obra.pk %}";
+            }
+        }
+    </script>
 {% endblock %}

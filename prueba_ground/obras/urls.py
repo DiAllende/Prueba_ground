@@ -8,6 +8,7 @@ urlpatterns = [
     path('obras/<int:pk>/', views.detalle_obra, name='details_obra'),
     path('crear/', views.crear_elemento, name='crear_elemento'),
     path('obras/<int:pk>/update/', views.update_obra, name='update_obra'),
+    path('borrar/<int:pk>/', views.borrar_obra, name='borrar_obra'),
 ]
 if settings.DEBUG:
     from django.conf.urls.static import static

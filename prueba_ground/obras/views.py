@@ -35,3 +35,8 @@ def update_obra(request, pk):
         form = UpdateObraForm(instance=obra)
 
     return render(request, 'obras/update_obra.html', {'form': form})
+
+def borrar_obra(request, pk):
+    obra = get_object_or_404(Obras, pk=pk)
+    obra.delete()
+    return redirect('obras')

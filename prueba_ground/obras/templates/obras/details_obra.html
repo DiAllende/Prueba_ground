@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Detalles de la Obra{% endblock %}
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <div class="container text-center">
+        <h2>{{ obra.Nombre }}</h2>
+        <p>Autor: {{ obra.Autor }}</p>
+        <p>Precio: ${{ obra.Precio }} clp.</p>
+        <p>Técnica: {{ obra.Tecnica }}</p>
+        <p>Año: {{ obra.Anio }}</p>
+        <p>Detalles de la obra: {{ obra.Detalles_obra }}</p>
+        <img src="{{ obra.image.url }}" alt="{{ obra.Nombre }}">
+    </div>
+{% endblock %}

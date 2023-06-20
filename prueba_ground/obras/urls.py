@@ -5,7 +5,7 @@ from prueba_ground import settings
 
 urlpatterns = [
     path('obras/', views.obras, name="obras"),
-    path('obras/<int:pk>/', views.detalle_obra, name='detalle_obra'),
+    path('obras/<int:pk>/', views.detalle_obra, name='details_obra'),
     path('crear/', views.crear_elemento, name='crear_elemento'),
 ]
 if settings.DEBUG:

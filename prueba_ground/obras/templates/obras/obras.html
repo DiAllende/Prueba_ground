@@ -1,10 +1,10 @@
 {% extends 'core/base.html' %}
 
-{%block title%}Obras {%endblock%}
+{% block title %}Obras{% endblock %}
 
-{%load static%}
+{% load static %}
 
-{%block content%}
+{% block content %}
     <br>
     <br>
     <br>    
@@ -16,25 +16,20 @@
             <h6 class="row" style="margin-left: 20px; font-size: 40; padding-bottom: 50px;">Obras con mayor venta</h6>
           </div>
           <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-        {%for Obras in obras %}
-                <div class="col" style="padding-bottom: 100px;">
-                    <a href="#" class="group">
-                    <div
-                        class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-                        <img
-                        src="{{Obras.image.url}}"
-                        alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
-                        class="h-full w-full object-cover object-center group-hover:opacity-75">
-                    </div>
-                    <h3 class="mt-4 text-sm text-gray-700">{{Obras.Nombre}}</h3>
-                    <h3>{{Obras.Autor}}</h3>
-                    <p class="mt-1 text-lg font-medium text-gray-900">${{Obras.Precio}} clp.</p>
-                    </a>
+        {% for obra in obras %}
+            <div class="col" style="padding-bottom: 100px;">
+                <a href="{% url 'details_obra' obra.pk %}" class="group">
+                <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+                    <img src="{{ obra.image.url }}" alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." class="h-full w-full object-cover object-center group-hover:opacity-75">
                 </div>
-        {%endfor%} 
+                <h3 class="mt-4 text-sm text-gray-700">{{ obra.Nombre }}</h3>
+                <h3>{{ obra.Autor }}</h3>
+                <p class="mt-1 text-lg font-medium text-gray-900">${{ obra.Precio }} clp.</p>
+                </a>
+            </div>
+        {% endfor %}
           </div>
         </div>
         </div>
     </div>
-
-{%endblock%}
+{% endblock %}

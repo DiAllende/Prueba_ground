@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Actualizar Obra{% endblock %}
+
+{% load static %}
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <h2>Actualizar Obra</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+
+{%block title%}Crear Obra {%endblock%}
+
+{%load static%}
+
+{%block content%}
+    <br>
+    <br>
+    <br> 
+    <form method="post">
+        {% csrf_token %}
+        <pre>Nombre:            <input type="text" name="nombre"></pre>
+        <pre>Precio:            <input type="number" name="Precio"></pre>
+        <pre>Nombre Autor:      <input type="text" name="nombre_autor"></pre>
+        <pre>Titulo Original:   <input type="text" name="titulo"></pre>
+        <pre>Tecnica:           <input type="text" name="tecnica"></pre>
+        <pre>Año:               <input type="number" name="anio"></pre>
+        <pre>Detalle Obra:      <textarea name="detalle"></textarea></pre>
+        <pre>Imagen:            <input type="file" name="imagen" accept="image/png, image/jpeg">></pre>
+        <button type="submit">Guardar</button>
+    </form><br><br>
+    <a href="{% url 'obras'%}">Volver </a>
+    <br>
+    <div id="idMensajes">
+        {% if mensaje %}
+            {{mensaje}}
+        {%endif%}
+    </div>
+{%endblock%}

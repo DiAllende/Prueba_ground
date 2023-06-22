@@ -6,7 +6,9 @@ def registro(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()  # Guardar el formulario en la base de datos
-            return redirect('registro_exitoso')  # Redirigir a una página de éxito
+            return redirect('login')  # Redirigir a una página de éxito
     else:
         form = RegisterForm()
+    
+
     return render(request, 'registro/registro.html', {'form': form})

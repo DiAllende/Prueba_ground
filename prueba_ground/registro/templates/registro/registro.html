@@ -12,93 +12,15 @@
         <div class="row justify-content-center align-items-center">
             <div class="col-md-6 custom-form-container">
                 <form class="needs-validation" action="/registro/" method="post" novalidate>
-                {% csrf_token %}
-                    <div class="mb-3">
-                        <label for="validationCustom01" class="form-label custom-form-label">Nombre completo</label>
-                            {{form.nombre}}
-                        <div class="valid-feedback">
-                            Valido
-                        </div>
-                        <div class="invalid-feedback">
-                            Por favor ingresa tu nombre.
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="validationCustom02" class="form-label custom-form-label">Rut</label>
-                            {{form.rut}}
-                        <div class="valid-feedback">
-                            Valido
-                        </div>
-                        <div class="invalid-feedback">
-                            Ingresa un Rut válido.
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="validationCustomUsername" class="form-label custom-form-label">Correo</label>
-                        <div class="input-group has-validation">
-                            {{form.email}}
-                            <span class="input-group-text" id="inputGroupPrepend" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">@</span>
-                            <div class="valid-feedback">
-                                Valido
-                            </div>
-                            <div class="invalid-feedback">
-                                Correo inválido.
-                            </div>
-                        </div>
-                    <div class="mb-3">
-                        <label for="validationCustom06" class="form-label custom-form-label">Contraseña</label>
-                        <input type="password" class="form-control custom-form-control" id="validationCustom06" required placeholder="La contraseña debe tener al menos 6 caracteres">
-                        <div class="valid-feedback">
-                                Válido
-                        </div>
-                        <div class="invalid-feedback">
-                            Ingresa una contraseña válida.
-                        </div>
-                        <span id="passwordValidation" class="text-danger"></span>
-                    </div>                         
-                    <div class="mb-3">
-                        <label for="validationCustom03" class="form-label custom-form-label">Dirección</label>
-                            {{form.direccion}}
-                        <div class="valid-feedback">
-                            Valido
-                        </div>
-                        <div class="invalid-feedback">
-                            Dirección inválida. Asegúrate de ingresar una dirección válida en Chile.
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="validationCustom04" class="form-label custom-form-label">País</label>
-                            {{form.pais}}
-                        <div class="valid-feedback">
-                            Valido
-                        </div>
-                        <div class="invalid-feedback">
-                            Selecciona el país.
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="validationCustom05" class="form-label custom-form-label">Código postal</label>
-                            {{form.cp}}
-                        <div class="valid-feedback">
-                            Valido
-                        </div>
-                        <div class="invalid-feedback">
-                            Ingresa un código postal válido en Chile.
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="validationCustom05" class="form-label custom-form-label">Administrador</label>
-                            {{form.admin}}
-                    </div>
+                    {% csrf_token %}
+                    {{ form.as_p }}
                     <div class="mb-3">
                         <div class="form-check">
-                            
                             <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
                             <label class="form-check-label custom-checkbox-label" for="invalidCheck">
                                 Acepto los términos y condiciones
                             </label>
-                            <div class="valid-feedback">
-                            </div>
+                            <div class="valid-feedback"></div>
                             <div class="invalid-feedback">
                                 Debes aceptar antes de enviar.
                             </div>

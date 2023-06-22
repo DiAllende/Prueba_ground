@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Users(models.Model):
+class UsersRegistro(models.Model):
     email = models.EmailField(verbose_name="Email", max_length=100, unique=True)
     password = models.CharField(verbose_name="Password", max_length=200)
     nombre = models.CharField(verbose_name="Nombre completo", max_length=200)
@@ -14,8 +14,8 @@ class Users(models.Model):
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edicion")
 
     class Meta:
-        verbose_name = "User"
-        verbose_name_plural = "Users"
+        verbose_name = "User Registrado"
+        verbose_name_plural = "Users registrados"
         ordering = ['created']
     
     def __str__(self):

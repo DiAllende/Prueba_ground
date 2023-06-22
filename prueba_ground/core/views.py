@@ -7,8 +7,6 @@ def index(request):
     obras = Obras.objects.all()[:3]  # Obtén las primeras 3 obras
     return render(request, "core/home.html", {'obras': obras})
 
-def carrito(request):
-    return render(request, "core/carrito.html")
 
 def detalles_obra(request, pk):
     obra = get_object_or_404(Obras, pk=pk)

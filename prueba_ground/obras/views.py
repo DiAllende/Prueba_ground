@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 
 from obras.form import CreateObraForm, UpdateObraForm
 from .models import Obras
-import os
+from cart.views import agregar_al_carrito, ver_carrito
 
 def obras(request):
     obras = Obras.objects.all()
@@ -41,5 +41,6 @@ def borrar_obra(request, pk):
     obra = get_object_or_404(Obras, pk=pk)
     obra.delete()
     return redirect('obras')
+
 
 

@@ -3,6 +3,7 @@ from django.urls import path
 from core.views import ObrasListView
 from obras import views
 from prueba_ground import settings
+from .views import agregar_al_carrito, ver_carrito
 
 urlpatterns = [
     path('obras/<int:pk>/', views.detalle_obra, name='details_obra'),

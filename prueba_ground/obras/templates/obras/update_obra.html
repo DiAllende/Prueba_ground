@@ -5,13 +5,25 @@
 {% load static %}
 
 {% block content %}
-    <br>
-    <br>
-    <br>
+<div style="margin-top: 80px; margin-bottom: 20px; margin-left: 20px;">
     <h2>Actualizar Obra</h2>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+</div>
+<div class="mb-3" style="margin-left: 20px; margin-right: 1000px">
+    <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary btn-custom" style="margin-top: 20px;">Guardar cambios</button>   
     </form>
+</div>
+
+<style>
+    .field-spacing {
+    margin-bottom: 10px;
+}
+
+.btn-custom {
+  background-color: blue;
+}
+</style>
 {% endblock %}

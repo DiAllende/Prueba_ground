@@ -33,7 +33,6 @@ function valiLog(){
     else{
         error_uname.innerHTML =("");
         error_pass.innerHTML =("");
-        document.location.assign('home.html')
     }
     
 }

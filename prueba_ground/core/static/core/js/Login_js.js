@@ -36,9 +36,4 @@ form.onsubmit = (e)=>{
       pField.classList.add("valid");
     }
   }
-  //si eField y pField no contienen un error en la clase, el usuario rellenó el campo
-  var djangoURL = "{% url 'home' %}";
-  if(!eField.classList.contains("error") && !pField.classList.contains("error")){
-    window.location.href = "";
-  }
 }

@@ -1,8 +1,12 @@
-from django.shortcuts import render
-
-# Create your views here.
+from django.shortcuts import render, redirect
+from .forms import RegisterForm
 
 def registro(request):
-    return render(request, "registro/registro.html")
-
-
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()  # Guardar el formulario en la base de datos
+            return redirect('registro_exitoso')  # Redirigir a una página de éxito
+    else:
+        form = RegisterForm()
+    return render(request, 'registro/registro.html', {'form': form})

@@ -1,27 +1,28 @@
 function validateForm() {
     const form = document.querySelector('.needs-validation');
     if (form.checkValidity() === false) {
-    event.preventDefault();
-    event.stopPropagation();
-    } else {
-    window.location.href = "index.html";
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    else{
+        window.location.href = "/login";
     }
     form.classList.add('was-validated');
-        var passwordInput = document.getElementById("validationCustom06");
-        var passwordValidation = document.getElementById("passwordValidation");
     
-        // Verificar la longitud mínima de la contraseña
-        if (passwordInput.value.length < 6) {
-            passwordValidation.textContent = "La contraseña debe tener al menos 6 caracteres.";
-            passwordInput.classList.add("is-invalid");
-            passwordInput.classList.remove("is-valid");
-        } else {
-            passwordValidation.textContent = "";
-            passwordInput.classList.remove("is-invalid");
-            passwordInput.classList.add("is-valid");
-        }
+    var passwordInput = document.getElementById("validationCustom06");
+    var passwordValidation = document.getElementById("passwordValidation");
+    
+    // Verificar la longitud mínima de la contraseña
+    if (passwordInput.value.length < 6) {
+        passwordValidation.textContent = "La contraseña debe tener al menos 6 caracteres.";
+        passwordInput.classList.add("is-invalid");
+        passwordInput.classList.remove("is-valid");
+    } else {
+        passwordValidation.textContent = "";
+        passwordInput.classList.remove("is-invalid");
+        passwordInput.classList.add("is-valid");
     }
-
+}
 
 function validateRut(rut) {
     rut = rut.replace(/[^0-9kK]+/g, '').toUpperCase();
@@ -76,5 +77,3 @@ postalCodeInput.addEventListener('input', () => {
     const isValid = validatePostalCode(postalCodeInput.value);
     postalCodeInput.setCustomValidity(isValid ? '' : 'Código postal inválido en Chile. El formato debe ser de 7 dígitos.');
 });
-
-

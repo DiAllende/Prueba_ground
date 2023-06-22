@@ -11,10 +11,11 @@
     <div class="p-3 m-0 border-0 bd-example">
         <div class="row justify-content-center align-items-center">
             <div class="col-md-6 custom-form-container">
-                <form class="needs-validation" novalidate>
+                <form class="needs-validation" action="/registro/" method="post" novalidate>
+                {% csrf_token %}
                     <div class="mb-3">
                         <label for="validationCustom01" class="form-label custom-form-label">Nombre completo</label>
-                        <input type="text" class="form-control custom-form-control" id="validationCustom01" required>
+                            {{form.nombre}}
                         <div class="valid-feedback">
                             Valido
                         </div>
@@ -24,7 +25,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="validationCustom02" class="form-label custom-form-label">Rut</label>
-                        <input type="text" class="form-control custom-form-control" id="validationCustom02" required placeholder="Ej: 9.999.999-5">
+                            {{form.rut}}
                         <div class="valid-feedback">
                             Valido
                         </div>
@@ -35,7 +36,7 @@
                     <div class="mb-3">
                         <label for="validationCustomUsername" class="form-label custom-form-label">Correo</label>
                         <div class="input-group has-validation">
-                            <input type="text" class="form-control custom-form-control custom-username-field" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                            {{form.email}}
                             <span class="input-group-text" id="inputGroupPrepend" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">@</span>
                             <div class="valid-feedback">
                                 Valido
@@ -57,7 +58,7 @@
                     </div>                         
                     <div class="mb-3">
                         <label for="validationCustom03" class="form-label custom-form-label">Dirección</label>
-                        <input type="text" class="form-control custom-form-control" id="validationCustom03" required placeholder="Ej: Antonio Varas 666, Providencia">
+                            {{form.direccion}}
                         <div class="valid-feedback">
                             Valido
                         </div>
@@ -67,10 +68,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="validationCustom04" class="form-label custom-form-label">País</label>
-                        <select class="form-select custom-form-control" id="validationCustom04" required>
-                            <option selected disabled value="">País</option>
-                            <option>Chile</option>
-                        </select>
+                            {{form.pais}}
                         <div class="valid-feedback">
                             Valido
                         </div>
@@ -80,7 +78,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="validationCustom05" class="form-label custom-form-label">Código postal</label>
-                        <input type="text" class="form-control custom-form-control" id="validationCustom05" required>
+                            {{form.cp}}
                         <div class="valid-feedback">
                             Valido
                         </div>
@@ -89,7 +87,12 @@
                         </div>
                     </div>
                     <div class="mb-3">
+                        <label for="validationCustom05" class="form-label custom-form-label">Administrador</label>
+                            {{form.admin}}
+                    </div>
+                    <div class="mb-3">
                         <div class="form-check">
+                            
                             <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
                             <label class="form-check-label custom-checkbox-label" for="invalidCheck">
                                 Acepto los términos y condiciones
@@ -102,7 +105,7 @@
                         </div>
                     </div>     
                     <div class="mb-3">
-                        <button class="btn btn-primary custom-btn" type="button" onclick="validateForm()">Registrarme</button>
+                        <button class="btn btn-primary custom-btn" type="submit">Registrarme</button>
                     </div>
                 </form>
             </div>

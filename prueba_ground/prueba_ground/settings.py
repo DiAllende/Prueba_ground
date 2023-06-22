@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'core',
     'obras.apps.obrasConfig',
     'login.apps.LoginConfig',
-    'registro',
+    'registro.apps.RegistroConfig',
 ]
 
 MIDDLEWARE = [

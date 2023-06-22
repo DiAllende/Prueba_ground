@@ -25,7 +25,8 @@ urlpatterns = [
     path('cart/', include('cart.urls')),
     path('', include('obras.urls')),
     path('admin/', admin.site.urls),
-    path('obras/', views.ObrasListView.as_view(), name='obras'),    
+    path('obras/', views.ObrasListView.as_view(), name='obras'),
+    path('ventas_especiales/', views.ventas_especiales, name='ve'),     
 ]
 
 if settings.DEBUG:

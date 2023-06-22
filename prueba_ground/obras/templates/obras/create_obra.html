@@ -5,15 +5,18 @@
 {% load static %}
 
 {% block content %}
-    <br>
-    <br>
-    <br>
+
+<div style="margin-top: 80px; margin-bottom: 20px; margin-left: 20px;">
+    <h2>Sube tu obra!</h2>
+</div>
+<div class="mb-3" style="margin-left: 20px; margin-right: 1000px">
     <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Guardar</button>
+            {% csrf_token %}
+            {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary btn-custom" style="margin-top: 20px; margin-bottom: 10px;">Publicar</button>  
+         
     </form>
-    <br><br>
     <a href="{% url 'obras' %}">Volver</a>
     <br>
     <div id="idMensajes">
@@ -21,4 +24,15 @@
             {{ mensaje }}
         {% endif %}
     </div>
+</div>
+
+<style>
+    .field-spacing {
+    margin-bottom: 10px;
+}
+
+.btn-custom {
+  background-color: blue;
+}
+</style>
 {% endblock %}

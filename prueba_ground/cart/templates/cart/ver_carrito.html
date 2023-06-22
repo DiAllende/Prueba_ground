@@ -1,0 +1,53 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<br>
+<br>
+<br>
+
+  <h1>Carrito de Compras</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Obra</th>
+        <th>Cantidad</th>
+        <th>Precio Unitario</th>
+        <th>Total</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in obras %}
+        <tr>
+          <td>
+            <p>{{ item.obra.Nombre }}</p>
+            <img src="{{ item.obra.image.url }}" alt="{{ item.obra.Nombre }}" width="100" height="100">
+          </td>
+          <td>
+            <form action="{% url 'actualizar_cantidad' item.obra.id %}" method="post" class="flex items-center">  <!-- Formulario para actualizar la cantidad -->
+              {% csrf_token %}
+              <input type="number" name="cantidad" value="{{ item.cantidad }}" min="1" class="mr-2 w-16">  <!-- Campo de entrada para la cantidad -->
+              <button type="submit" class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Actualizar</button>  <!-- Botón para actualizar la cantidad -->
+            </form>
+          </td>
+          <td>{{ item.obra.Precio }}</td>
+          <td>{{ item.total_precio }}</td>
+          <td>
+            <form action="{% url 'eliminar_del_carrito' item.obra.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">Quitar</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <p>Total: {{ total }}</p>
+    <form action="{% url 'limpiar_carrito' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-green-500 px-8 py-4 text-lg font-medium text-white hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">Comprar</button>
+    </form>
+
+{% endblock %}

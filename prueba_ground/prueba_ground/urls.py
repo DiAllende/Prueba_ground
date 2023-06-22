@@ -20,9 +20,9 @@ from core import views
 
 urlpatterns = [
     path('', views.index, name="home"),
-    path('carrito/', views.carrito, name="carrito"),
     path('', include('login.urls')),
     path('', include('registro.urls')),
+    path('cart/', include('cart.urls')),
     path('', include('obras.urls')),
     path('admin/', admin.site.urls),
     path('obras/', views.ObrasListView.as_view(), name='obras'),    

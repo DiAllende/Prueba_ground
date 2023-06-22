@@ -1,0 +1,28 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Carrito de Compras{% endblock %}
+
+{% block content %}
+  <h1>Carrito de Compras</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Obra</th>
+        <th>Cantidad</th>
+        <th>Precio Unitario</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in cart_items %}
+        <tr>
+          <td>{{ item.obra.nombre }}</td>
+          <td>{{ item.cantidad }}</td>
+          <td>{{ item.obra.precio }}</td>
+          <td>{{ item.subtotal }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p>Total: {{ cart_total }}</p>
+{% endblock %}

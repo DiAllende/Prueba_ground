@@ -25,6 +25,11 @@
                 <h3 class="mt-4 text-sm text-gray-700">{{ obra.Nombre }}</h3>
                 <h3>{{ obra.Autor }}</h3>
                 <p class="mt-1 text-lg font-medium text-gray-900">${{ obra.Precio }} clp.</p>
+                <form action="{% url 'agregar_al_carrito' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="obra_id" value="{{ obra.id }}">
+                    <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Agregar al carrito</button>
+                </form>
                 </a>
             </div>
         {% endfor %}
@@ -40,4 +45,40 @@
         </div>
         </div>
     </div>
+    <script>
+        // Obtener todos los botones "Add to Cart"
+        const addToCartButtons = document.querySelectorAll('.add-to-cart-button');
+
+        // Iterar sobre cada botón y asignar el evento click
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();  // Evitar que el enlace se abra
+
+                const obraId = this.dataset.obraId;
+
+                const requestData = { obraId: obraId };
+                fetch('/cart/add/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'  // Agrega el token CSRF para protección contra ataques CSRF
+                    },
+                    body: JSON.stringify(requestData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Manejar la respuesta del servidor
+                    if (data.success) {
+                        alert('Obra añadida al carrito de compras');
+                    } else {
+                        alert('No se pudo agregar la obra al carrito');
+                    }
+                })
+                .catch(error => {
+                    // Manejar errores
+                    console.error('Error al agregar obra al carrito:', error);
+                });
+            });
+        });
+    </script>
 {% endblock %}

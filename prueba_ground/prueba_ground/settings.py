@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'obras.apps.obrasConfig',
-    'login.apps.LoginConfig',
     'registro.apps.RegistroConfig',
     'cart'
 ]
@@ -134,3 +133,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CART_SESSION_ID = 'cart'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    # Otros backends de autenticación (si los hay)
+]

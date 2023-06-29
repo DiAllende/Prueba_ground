@@ -4,10 +4,47 @@
 <br>
 <br>
 <br>
-  <h2>Iniciar sesión</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Iniciar sesión</button>
-  </form>
+<br>
+<div class="container">
+  <div class="login-form">
+    <h2>Iniciar sesión</h2>
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="{{ form.email.id_for_label }}">Email:</label>
+        {{ form.email }}
+        <div class="error-message">
+          {{ form.email.errors }}
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="{{ form.password.id_for_label }}">Contraseña:</label>
+        {{ form.password }}
+        <div class="error-message">
+          {{ form.password.errors }}
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-blue">Iniciar sesión</button>
+      </div>
+      <div class="form-group">
+        <a href="{% url 'register'%}" class="btn btn-primary btn-blue">Registrate</a>
+      </div>
+    </form>
+  </div>
+</div>
+<br>
+<br>
+<br>
+
+<style> 
+.btn-blue {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-blue:hover {
+  background-color: #0069d9;
+}
+</style>
 {% endblock %}

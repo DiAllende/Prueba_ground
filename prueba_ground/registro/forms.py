@@ -15,7 +15,7 @@ class CustomUserCreationForm(UserCreationForm):
         if CustomUser.objects.filter(email=email).exists():
             raise forms.ValidationError("El correo electrónico ya está registrado.")
         return email
-
+    
     class Meta:
         model = CustomUser
         fields = ('email', 'password1', 'password2', 'nombre', 'rut', 'direccion', 'pais', 'cp', 'admin')
@@ -23,5 +23,10 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class LoginForm(forms.Form):
-    email = forms.EmailField(max_length=150)
-    password = forms.CharField(widget=forms.PasswordInput)
+    email = forms.EmailField(
+        max_length=150,
+        widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'})
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Contraseña'})
+    )

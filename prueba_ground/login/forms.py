@@ -1,7 +1,8 @@
 from django import forms
-from .models import Users
+from .models import UsersRegistro
 
-class FormLog(forms.Form):
-    email = forms.EmailField(label="Email", max_length=100)
-    password = forms.CharField(label="Password", max_length=200, widget=forms.PasswordInput)
+class RegistroForm(forms.ModelForm):
+    class Meta:
+        model = UsersRegistro
+        fields = ['email', 'password']
 

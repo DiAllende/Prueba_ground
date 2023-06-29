@@ -20,7 +20,6 @@ from core import views
 
 urlpatterns = [
     path('', views.index, name="home"),
-    path('', include('login.urls')),
     path('', include('registro.urls')),
     path('cart/', include('cart.urls')),
     path('', include('obras.urls')),

@@ -77,29 +77,32 @@
               <a href="#" class="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">300 reviews</a>
             </div>
           </div>
-          <!-- BOTON 1 -->
-          <form action="{% url 'agregar_al_carrito' %}" method="post">
-                    {% csrf_token %}
-                    <input type="hidden" name="obra_id" value="{{ obra.id }}">
-                    <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Agregar al carrito</button>
-          </form>
-        <!-- BOTON 2 -->
-          <form class="mt-10">
-  
-            <a type="submit" href="{% url 'update_obra' obra.pk %}" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Actualizar</a>
-          </form>
-        <!-- BOTON 3 -->
-          <form class="mt-10">
-                    
-            <a type="submit" href="#" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" onclick="confirmarBorrado()">Borrar obra</a>
-          </form>
-        <!-- BOTON 4 -->
-          <form class="mt-10">
-                    
-            <a type="submit" href="{% url 'obras' %}" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Volver</a>
-          </form>
-        </div>
-        <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
+<!-- BOTON 1: Agregar al carrito -->
+<form action="{% url 'agregar_al_carrito' %}" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="obra_id" value="{{ obra.id }}">
+  <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Agregar al carrito</button>
+</form>
+
+{% if user.is_authenticated %}
+  <!-- BOTON 2: Actualizar obra -->
+  <form class="mt-10">
+    <a type="submit" href="{% url 'update_obra' obra.pk %}" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Actualizar</a>
+  </form>
+
+  <!-- BOTON 3: Borrar obra -->
+  <form class="mt-10">
+    <a type="submit" href="#" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" onclick="confirmarBorrado()">Borrar obra</a>
+  </form>
+{% endif %}
+
+<!-- BOTON 4: Volver -->
+<form class="mt-10">
+  <a type="submit" href="{% url 'obras' %}" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Volver</a>
+</form>
+</div>
+<div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
+
             <!-- desccripcion y detalle -->
             <div>
               <h3 class="sr-only">Description</h3>

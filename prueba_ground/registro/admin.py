@@ -1,8 +1,11 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import CustomUser
+from .forms import CustomUserCreationForm
 
 class CustomUserAdmin(UserAdmin):
+    add_form = CustomUserCreationForm  # Utiliza el formulario personalizado en la página de creación de usuarios
+
     list_display = ('nombre', 'email', 'rut', 'direccion', 'pais', 'cp', 'admin')
     list_filter = ('admin',)
     fieldsets = (

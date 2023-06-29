@@ -1,24 +1,31 @@
 from django.shortcuts import render, redirect
-
 from registro.models import CustomUser
 from .forms import CustomUserCreationForm, LoginForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+
+from django.shortcuts import render, redirect
+from registro.models import CustomUser
+from .forms import CustomUserCreationForm
 
 def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            # Crea una instancia de CustomUser
+            user = form.save(commit=False)
+            # Establece la contraseña
+            user.set_password(form.cleaned_data['password1'])
+            # Guarda el usuario en la base de datos
+            user.save()
             return redirect('login')
     else:
         form = CustomUserCreationForm()
     return render(request, 'registro/registro.html', {'form': form})
 
 
-from django.views.decorators.csrf import csrf_exempt
 
-@csrf_exempt
+
 def login_view(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -32,13 +39,17 @@ def login_view(request):
                     return redirect('home')
                 else:
                     messages.error(request, 'Credenciales inválidas.')
-                    print("Credenciales inválidas: " + email + ", " + password)
-                    return redirect('login')  # Redirige de nuevo al formulario de inicio de sesión
             except CustomUser.DoesNotExist:
                 messages.error(request, 'Credenciales inválidas.')
-                print("Credenciales inválidas: " + email + ", " + password)
-                return redirect('login')  # Redirige de nuevo al formulario de inicio de sesión
+        else:
+            messages.error(request, 'Credenciales inválidas.')
     else:
         form = LoginForm()
-    
+
     return render(request, 'registro/login.html', {'form': form})
+
+
+def logout_view(request):
+    if request.user.is_authenticated and isinstance(request.user, CustomUser):
+        logout(request)
+    return redirect('home')

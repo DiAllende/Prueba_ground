@@ -11,6 +11,8 @@ urlpatterns = [
     path('obras/crear/', views.crear_elemento, name='crear_elemento'),
     path('obras/<int:pk>/update/', views.update_obra, name='update_obra'),
     path('obras/borrar/<int:pk>/', views.borrar_obra, name='borrar_obra'),
+    path('obras/aprobar/<int:obra_id>/', views.aprobar_obra, name='aprobar_obra'),
+    path('obras/rechazar/<int:obra_id>/', views.rechazar_obra, name='rechazar_obra'),
 ]
 
 if settings.DEBUG:

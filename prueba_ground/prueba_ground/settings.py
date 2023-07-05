@@ -140,3 +140,16 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 AUTH_USER_MODEL = 'registro.CustomUser'
+
+CSRF_COOKIE_SECURE = True
+
+SITE_URL = 'http://127.0.0.1:8000/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'pruebamailsnoreply@gmail.com'  # Tu dirección de correo electrónico de Gmail
+EMAIL_HOST_PASSWORD = 'qqntjehbgboharrr'  # Tu contraseña de correo electrónico de Gmail
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+DEFAULT_FROM_EMAIL = 'pruebamailsnoreply@gmail.com'

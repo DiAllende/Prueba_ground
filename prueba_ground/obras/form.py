@@ -7,14 +7,14 @@ class CreateObraForm(forms.ModelForm):
         fields = '__all__'
 
         widgets = {
-            'Nombre': forms.TextInput(attrs={'class': 'form-control field-spacing', }),
+            'Nombre': forms.TextInput(attrs={'class': 'form-control field-spacing'}),
             'Precio': forms.NumberInput(attrs={'class': 'form-control field-spacing'}),
             'Autor': forms.TextInput(attrs={'class': 'form-control field-spacing'}),
             'Titulo_Original': forms.TextInput(attrs={'class': 'form-control field-spacing'}),
             'Tecnica': forms.TextInput(attrs={'class': 'form-control field-spacing'}),
             'Anio': forms.NumberInput(attrs={'class': 'form-control field-spacing'}),
             'Detalles_obra': forms.Textarea(attrs={'class': 'form-control field-spacing'}),
-
+            'estado': forms.TextInput(attrs={'class': 'form-control field-spacing', 'readonly': 'readonly'}),
         }
 
 class UpdateObraForm(forms.ModelForm):

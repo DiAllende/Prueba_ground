@@ -13,7 +13,7 @@ class Obras(models.Model):
     Anio = models.IntegerField(verbose_name="Año")
     Detalles_obra = models.TextField(verbose_name="Detalle Obra", blank=True, null=True)
     image = models.ImageField(verbose_name="Imagen", upload_to="Services")
-    aprobada = models.BooleanField(default=False)
+    estado = models.CharField(max_length=20, default='pendiente')
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creacion")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edicion")
 

@@ -60,13 +60,14 @@ def borrar_obra(request, pk):
 
 def aprobar_obra(request, obra_id):
     obra = get_object_or_404(Obras, id=obra_id)
-    obra.aprobada = True
+    obra.estado = 'aprobada'
     obra.save()
     # Otras acciones que desees realizar después de aprobar la obra
     return redirect('obras')
 
+
 def rechazar_obra(request, obra_id):
     obra = get_object_or_404(Obras, id=obra_id)
-    obra.delete()
+    obra.estado = 'rechazada'
     # Otras acciones que desees realizar después de rechazar la obra
     return redirect('obras')

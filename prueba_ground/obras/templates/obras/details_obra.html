@@ -44,6 +44,8 @@
     <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
       <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{{ obra.Nombre }}</h1>
     </div>
+
+
 <!-- precio -->
     <div class="mt-4 lg:row-span-3 lg:mt-0">
         <h2 class="sr-only">Informaci&oacute;n del producto</h2>
@@ -117,6 +119,12 @@
     
               <div class="mt-4">
                 <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
+
+                  <!--ver si el usuario esta autenticado y mostrar el estado-->
+                  {% if user.is_authenticated %}
+                    <li class="text-gray-400"><span class="text-gray-600">Estado: {{ obra.estado }}</span></li>
+                  {% endif %}
+
                   <li class="text-gray-400"><span class="text-gray-600">Autor: {{ obra.Autor }}</span></li>
     
                   <li class="text-gray-400"><span class="text-gray-600">Título original: {{ obra.Nombre }}</span></li>

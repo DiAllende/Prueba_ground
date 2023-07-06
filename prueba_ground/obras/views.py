@@ -1,7 +1,10 @@
-from msilib.schema import ListView
 from django.shortcuts import get_object_or_404, render, redirect
-
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from django.urls import reverse
 from obras.form import CreateObraForm, UpdateObraForm
+from prueba_ground import settings
 from .models import Obras
 from cart.views import agregar_al_carrito, ver_carrito
 
@@ -13,7 +16,20 @@ def crear_elemento(request):
     if request.method == 'POST':
         form = CreateObraForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            obra = form.save()
+
+            # Construye la URL de la vista 'aprobar_obra' con el argumento 'obra_id'
+            aprobar_url = request.build_absolute_uri(reverse('aprobar_obra', args=[obra.id]))
+            rechazar_url = request.build_absolute_uri(reverse('rechazar_obra', args=[obra.id]))
+
+            # Envío de notificación o correo electrónico al administrador
+            subject = 'Solicitud de Aprobación de Obra'
+            html_content = render_to_string('obras/email/aprobacion_obra.html', {'obra': obra, 'approve_url': aprobar_url, 'reject_url': rechazar_url, 'SITE_URL': settings.SITE_URL})
+            text_content = strip_tags(html_content)
+
+            email = EmailMultiAlternatives(subject, text_content, 'pruebamailsnoreply@gmail.com', ['pruebamailsnoreply@gmail.com'])
+            email.attach_alternative(html_content, 'text/html')
+            email.send()
             return redirect('obras')
     else:
         form = CreateObraForm()
@@ -42,5 +58,16 @@ def borrar_obra(request, pk):
     obra.delete()
     return redirect('obras')
 
+def aprobar_obra(request, obra_id):
+    obra = get_object_or_404(Obras, id=obra_id)
+    obra.estado = 'aprobada'
+    obra.save()
+    # Otras acciones que desees realizar después de aprobar la obra
+    return redirect('obras')
 
 
+def rechazar_obra(request, obra_id):
+    obra = get_object_or_404(Obras, id=obra_id)
+    obra.estado = 'rechazada'
+    # Otras acciones que desees realizar después de rechazar la obra
+    return redirect('obras')

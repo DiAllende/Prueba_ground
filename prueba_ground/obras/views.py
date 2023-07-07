@@ -69,5 +69,6 @@ def aprobar_obra(request, obra_id):
 def rechazar_obra(request, obra_id):
     obra = get_object_or_404(Obras, id=obra_id)
     obra.estado = 'rechazada'
+    obra.delete()
     # Otras acciones que desees realizar después de rechazar la obra
     return redirect('obras')

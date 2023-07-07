@@ -45,24 +45,18 @@
                     </li>
                     <li class="nav-item">
                         {% if user.is_authenticated %}
-                            <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a>
-                            <p class="nav-link" style="color: #79F2E6;">Bienvenido, {{ user.nombre }}</p>
-                            
                             {% if user.email == 'pruebamailsnoreply@gmail.com' %}
                                 <li class="nav-item">
                                     <a class="nav-link" href="{% url 'registered_users' %}">Administración de usuarios</a>
                                 </li>
                             {% endif %}
-                            
+                            <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a>
+                            <p class="nav-link" style="color: #79F2E6;">Bienvenido, {{ user.nombre }}</p>
                         {% else %}
                             <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
                         {% endif %}
                     </li>
                 </ul>
-                <form class="d-flex mt-3" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-success" type="submit">Search</button>
-                </form>
             </div>
         </div>
     </div>

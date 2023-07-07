@@ -5,17 +5,33 @@ from .models import CustomUser
 class CustomUserCreationForm(UserCreationForm):
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.username = f"user_{CustomUser.objects.count() + 1}"  # Genera un username único
+        user.username = self.generate_unique_username(user.nombre)
         if commit:
             user.save()
         return user
 
+    def generate_unique_username(self, nombre):
+        base_username = nombre.lower().replace(' ', '_')
+        username = base_username
+        count = 1
+        while CustomUser.objects.filter(username=username).exists():
+            username = f"{base_username}_{count}"
+            count += 1
+        return username
+    
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if CustomUser.objects.filter(email=email).exists():
             raise forms.ValidationError("El correo electrónico ya está registrado.")
         return email
     
+    def clean(self):
+        cleaned_data = super().clean()
+        username = cleaned_data.get('username')
+        if CustomUser.objects.filter(username=username).exists():
+            raise forms.ValidationError("El nombre de usuario ya está registrado.")
+        return cleaned_data
+
     class Meta:
         model = CustomUser
         fields = ('email', 'password1', 'password2', 'nombre', 'rut', 'direccion', 'pais', 'cp', 'admin')

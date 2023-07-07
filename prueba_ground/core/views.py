@@ -27,13 +27,13 @@ class ObrasListView(ListView):
     template_name = 'obras/obras.html'
     context_object_name = 'obras'
 
-@user_passes_test(lambda user: user.email == 'pruebamailsnoreply@gmail.com', login_url='404')
+@user_passes_test(lambda user: user.email == 'pruebamailsnoreply@gmail.com', login_url='login')
 def registered_users(request):
     usuarios = CustomUser.objects.all()
     return render(request, 'core/usuarios/Lista_usuarios.html', {'usuarios': usuarios})
 
 
-@user_passes_test(lambda user: user.email == 'pruebamailsnoreply@gmail.com', login_url='404')
+@user_passes_test(lambda user: user.email == 'pruebamailsnoreply@gmail.com', login_url='login')
 def editar_usuario(request, pk):
     usuario = get_object_or_404(CustomUser, pk=pk)
 
@@ -54,6 +54,6 @@ def borrar_usuario(request, pk):
     usuario = get_object_or_404(CustomUser, pk=pk)
     if request.method == 'POST':
         usuario.delete()
-        return redirect('lista_usuarios')
+        return redirect('registered_users')
 
     return render(request, 'core/usuarios/eliminar_usuario.html', {'usuario': usuario})

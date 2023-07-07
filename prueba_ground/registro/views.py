@@ -3,7 +3,7 @@ from registro.models import CustomUser
 from .forms import CustomUserCreationForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from registro.models import CustomUser
 from .forms import CustomUserCreationForm
@@ -21,8 +21,10 @@ def register(request):
     return render(request, 'registro/registro.html', {'form': form})
 
 
-
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -43,6 +45,7 @@ def login_view(request):
         form = LoginForm()
 
     return render(request, 'registro/login.html', {'form': form})
+
 
 
 def logout_view(request):

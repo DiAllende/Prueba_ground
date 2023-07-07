@@ -86,7 +86,7 @@
   <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Agregar al carrito</button>
 </form>
 
-{% if user.is_authenticated %}
+{% if user.is_authenticated and user.admin %}
   <!-- BOTON 2: Actualizar obra -->
   <form class="mt-10">
     <a type="submit" href="{% url 'update_obra' obra.pk %}" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Actualizar</a>

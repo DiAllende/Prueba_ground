@@ -68,9 +68,6 @@ def borrar_obra(request, pk):
     return redirect('obras')
 
 def aprobar_obra(request, obra_id):
-    if request.user.email != 'pruebamailsnoreply@gmail.com':
-        return HttpResponseForbidden('Acceso denegado')  # Devuelve un error 403 Forbidden si el remitente no es válido
-
     obra = get_object_or_404(Obras, id=obra_id)
     obra.estado = 'aprobada'
     obra.save()
@@ -79,9 +76,6 @@ def aprobar_obra(request, obra_id):
 
 
 def rechazar_obra(request, obra_id):
-    if request.user.email != 'pruebamailsnoreply@gmail.com':
-        return HttpResponseForbidden('Acceso denegado')  # Devuelve un error 403 Forbidden si el remitente no es válido
-
     obra = get_object_or_404(Obras, id=obra_id)
     obra.estado = 'rechazada'
     obra.delete()

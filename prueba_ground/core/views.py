@@ -54,6 +54,6 @@ def borrar_usuario(request, pk):
     usuario = get_object_or_404(CustomUser, pk=pk)
     if request.method == 'POST':
         usuario.delete()
-        return redirect('lista_usuarios')
+        return redirect('registered_users')
 
     return render(request, 'core/usuarios/eliminar_usuario.html', {'usuario': usuario})

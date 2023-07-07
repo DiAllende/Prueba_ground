@@ -7,6 +7,9 @@ from obras.form import CreateObraForm, UpdateObraForm
 from prueba_ground import settings
 from .models import Obras
 from cart.views import agregar_al_carrito, ver_carrito
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseForbidden
+from django.contrib.auth.decorators import user_passes_test
 
 def obras(request):
     obras = Obras.objects.all()
@@ -40,6 +43,11 @@ def detalle_obra(request, pk):
     obra = get_object_or_404(Obras, pk=pk)
     return render(request, 'obras/details_obra.html', {'obra': obra})
 
+
+def is_admin(user):
+    return user.is_authenticated and user.admin
+
+@user_passes_test(is_admin)
 def update_obra(request, pk):
     obra = get_object_or_404(Obras, pk=pk)
 
@@ -53,12 +61,16 @@ def update_obra(request, pk):
 
     return render(request, 'obras/update_obra.html', {'form': form})
 
+@user_passes_test(is_admin)
 def borrar_obra(request, pk):
     obra = get_object_or_404(Obras, pk=pk)
     obra.delete()
     return redirect('obras')
 
 def aprobar_obra(request, obra_id):
+    if request.user.email != 'pruebamailsnoreply@gmail.com':
+        return HttpResponseForbidden('Acceso denegado')  # Devuelve un error 403 Forbidden si el remitente no es válido
+
     obra = get_object_or_404(Obras, id=obra_id)
     obra.estado = 'aprobada'
     obra.save()
@@ -67,6 +79,9 @@ def aprobar_obra(request, obra_id):
 
 
 def rechazar_obra(request, obra_id):
+    if request.user.email != 'pruebamailsnoreply@gmail.com':
+        return HttpResponseForbidden('Acceso denegado')  # Devuelve un error 403 Forbidden si el remitente no es válido
+
     obra = get_object_or_404(Obras, id=obra_id)
     obra.estado = 'rechazada'
     obra.delete()

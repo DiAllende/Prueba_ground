@@ -20,7 +20,10 @@ class CustomUserCreationForm(UserCreationForm):
         model = CustomUser
         fields = ('email', 'password1', 'password2', 'nombre', 'rut', 'direccion', 'pais', 'cp', 'admin')
 
-
+class CustomUserEditForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['nombre', 'rut', 'direccion', 'pais', 'admin']
 
 class LoginForm(forms.Form):
     email = forms.EmailField(

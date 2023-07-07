@@ -25,7 +25,11 @@ urlpatterns = [
     path('', include('obras.urls')),
     path('admin/', admin.site.urls),
     path('obras/', views.ObrasListView.as_view(), name='obras'),
-    path('ventas_especiales/', views.ventas_especiales, name='ve'),     
+    path('ventas_especiales/', views.ventas_especiales, name='ve'),
+    path('Lista_usuarios/', views.registered_users, name='registered_users'),    
+    path('editar_usuario/<int:pk>/', views.editar_usuario, name='editar_usuario'),
+    path('borrar_usuario/<int:pk>/', views.borrar_usuario, name='borrar_usuario'),
+    
 ]
 
 if settings.DEBUG:

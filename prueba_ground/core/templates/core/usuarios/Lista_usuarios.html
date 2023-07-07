@@ -1,0 +1,46 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<br>
+<br>
+<br>
+
+<div class="container">
+    <h1>Usuarios Registrados</h1>
+    <br>
+
+    <table class="table table-bordered table-hover rounded">
+        <thead class="table-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>RUT</th>
+                <th>Dirección</th>
+                <th>País</th>
+                <th>Código Postal</th>
+                <th>Admin</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for usuario in usuarios %}
+              {% if usuario.email != 'pruebamailsnoreply@gmail.com' %}
+                <tr>
+                  <td>{{ usuario.nombre }}</td>
+                  <td>{{ usuario.email }}</td>
+                  <td>{{ usuario.rut }}</td>
+                  <td>{{ usuario.direccion }}</td>
+                  <td>{{ usuario.pais }}</td>
+                  <td>{{ usuario.cp }}</td>
+                  <td>{{ usuario.admin }}</td>
+                  <td>
+                    <a href="{% url 'editar_usuario' usuario.id %}" class="btn btn-primary editar">Editar</a>
+                    <a href="{% url 'borrar_usuario' usuario.id %}" class="btn btn-danger">Borrar</a>
+                  </td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

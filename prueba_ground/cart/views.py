@@ -2,12 +2,16 @@ from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from .cart import Cart
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
+
 
 from obras.models import Obras
+
 
 def carrito(request):
     return render(request, "cart/carrito.html")
 
+@login_required(login_url='login')
 def agregar_al_carrito(request):
     if request.method == 'POST':
         obra_id = request.POST.get('obra_id')
@@ -27,6 +31,7 @@ def agregar_al_carrito(request):
         response_data = {'success': False, 'message': 'Método no permitido'}
         return JsonResponse(response_data, status=405)
 
+@login_required(login_url='login')
 def ver_carrito(request):
     cart = Cart(request)
     obras_en_carrito = cart.get_obras()

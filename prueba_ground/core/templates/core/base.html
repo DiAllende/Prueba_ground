@@ -6,64 +6,79 @@
     <title>{% block title %}{% endblock %} || Ground Zero</title>
 
     {% load static %}
-    <link href="{% static 'core/css/footer.css'%}"  rel="stylesheet" >
-      
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script type="text/javascript" src="{% static 'core/js/tail.js' %}"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.5/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="{% static 'core/css/footer.css'%}"  rel="stylesheet" >    
+    <link rel="stylesheet" href="css/background.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/productos.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   </head>
 
 
   <body class="back">
-    <!-- NAVBAR -->
-    <div class="fixed-top">
-    <nav class="navbar navbar-dark fixed-top" style="background-color: black;">
+<!-- NAVBAR -->
+<div class="fixed-top">
+  <nav class="navbar navbar-dark fixed-top" style="background-color: black;">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'home' %}">
-            <img src="{% static 'core/logo/logoSoloNegativo.png' %}" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+      <div class="d-flex justify-content-between align-items-center w-100">
+        <div>
+          <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'core/logo/logoSoloNegativo.png' %}" alt="Logo" width="30" height="30"
+              class="d-inline-block align-text-top">
             Grupo cero°
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
-            aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel"
-            style="background-color: black;">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel" style="color: #79F2E6;">Menu</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'ver_carrito' %}">Carrito</a>
-                    </li>
-                    <li class="nav-item">
-                        {% if user.is_authenticated %}
-                            {% if user.email == 'pruebamailsnoreply@gmail.com' %}
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'registered_users' %}">Administración de usuarios</a>
-                                </li>
-                            {% endif %}
-                            <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a>
-                            <p class="nav-link" style="color: #79F2E6;">Bienvenido, {{ user.nombre }}</p>
-                        {% else %}
-                            <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
-                        {% endif %}
-                    </li>
-                </ul>
-            </div>
+          </a>
         </div>
-    </div>
-</nav>
 
+        <div class="ml-auto mr-10">
+          <div class="navbar-collapse">
+            {% if user.is_authenticated %}
+            <p class="nav-link" style="color: #F06BF2;">Estás iniciado como: {{ user.nombre }}</p>
+            {% endif %}
+          </div>
+        </div>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
+          aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasDarkNavbar"
+        aria-labelledby="offcanvasDarkNavbarLabel" style="background-color: black;">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel" style="color: #F06BF2;">Menu</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'ver_carrito' %}">Carrito</a>
+            </li>
+            <li class="nav-item">
+              {% if user.is_authenticated %}
+              {% if user.email == 'pruebamailsnoreply@gmail.com' %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'registered_users' %}">Administración de usuarios</a>
+              </li>
+              {% endif %}
+              <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a>
+              <p class="nav-link" style="color: #F06BF2;">Bienvenido, {{ user.nombre }}</p>
+              {% else %}
+              <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
+              {% endif %}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
 </div>
-      {% block content %}{% endblock content %}
+{% block content %}{% endblock content %}
 
   <!-- FOOTER -->
     <footer class="footer-section">
@@ -74,8 +89,8 @@
               <div class="single-cta">
                 <i class="fas fa-map-marker-alt"></i>
                 <div class="cta-text">
-                  <h4>Find us</h4>
-                  <span>1010 Avenue, sw 54321, chandigarh</span>
+                  <h4>Ubicaci&oacute;n</h4>
+                  <span>Antonio Varas 666</span>
                 </div>
               </div>
             </div>
@@ -83,8 +98,8 @@
               <div class="single-cta">
                 <i class="fas fa-phone"></i>
                 <div class="cta-text">
-                  <h4>Call us</h4>
-                  <span>9876543210 0</span>
+                  <h4>Tel&eacute;fono</h4>
+                  <span>+56 9 6666 6666</span>
                 </div>
               </div>
             </div>
@@ -92,8 +107,8 @@
               <div class="single-cta">
                 <i class="far fa-envelope-open"></i>
                 <div class="cta-text">
-                  <h4>Mail us</h4>
-                  <span>mail@info.com</span>
+                  <h4>Correo</h4>
+                  <span>grupo.cero@gmail.com</span>
                 </div>
               </div>
             </div>
@@ -107,12 +122,11 @@
                   <a href="index.html"><img src="{% static 'core/logo/LogoHorizontalNegativo.png'%}" class="img-fluid" alt="logo"></a>
                 </div>
                 <div class="footer-text">
-                  <p>Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed do eiusmod tempor incididuntut consec
-                    tetur adipisicing
-                    elit,Lorem ipsum dolor sit amet.</p>
+                  <p>Grupo de artistas pl&aacute;sticos dedicados a la pintura, escultura, orfebrer&iacute;a, tejido y otras expresiones 
+                    art&iacute;sticas.</p>
                 </div>
                 <div class="footer-social-icon">
-                  <span>Follow us</span>
+                  <span>S&iacute;guenos</span>
                   <a href="#"><i class="fab fa-facebook-f facebook-bg"></i></a>
                   <a href="#"><i class="fab fa-twitter twitter-bg"></i></a>
                   <a href="#"><i class="fab fa-google-plus-g google-bg"></i></a>
@@ -122,29 +136,21 @@
             <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
               <div class="footer-widget">
                 <div class="footer-widget-heading">
-                  <h3>Useful Links</h3>
+                  <h3>Enlaces &uacute;tiles</h3>
                 </div>
                 <ul>
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">about</a></li>
-                  <li><a href="#">services</a></li>
-                  <li><a href="#">portfolio</a></li>
-                  <li><a href="#">Contact</a></li>
-                  <li><a href="#">About us</a></li>
-                  <li><a href="#">Our Services</a></li>
-                  <li><a href="#">Expert Team</a></li>
-                  <li><a href="#">Contact us</a></li>
-                  <li><a href="#">Latest News</a></li>
+                  <li><a href="{% url 'home' %}">Home</a></li>
+                  <li><a href="{% url 'login' %}">Login</a></li>            
                 </ul>
               </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
               <div class="footer-widget">
                 <div class="footer-widget-heading">
-                  <h3>Subscribe</h3>
+                  <h3>Subscr&iacute;bete</h3>
                 </div>
                 <div class="footer-text mb-25">
-                  <p>Don’t miss to subscribe to our new feeds, kindly fill the form below.</p>
+                  <p>Subscr&iacute;bete para recibir actualizaciones de las obras que se suben</p>
                 </div>
                 <div class="subscribe-form">
                   <form action="#">
@@ -162,17 +168,13 @@
           <div class="row">
             <div class="col-xl-6 col-lg-6 text-center text-lg-left">
               <div class="copyright-text">
-                <p>Copyright &copy; 2018, All Right Reserved <a href="https://codepen.io/anupkumar92/">Anup</a></p>
+                <p>Copyright &copy; 2023, Todos los derechos reservados <a href="{% url 'home' %}">Grupo cero</a></p>
               </div>
             </div>
             <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
               <div class="footer-menu">
                 <ul>
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Terms</a></li>
-                  <li><a href="#">Privacy</a></li>
-                  <li><a href="#">Policy</a></li>
-                  <li><a href="#">Contact</a></li>
+                  <li><a href="{% url 'home' %}">Home</a></li>
                 </ul>
               </div>
             </div>
@@ -187,7 +189,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
       integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
       crossorigin="anonymous"></script>
-    
+      <script type="text/javascript" src="{% static 'core/js/tail.js' %}"></script>
+      <script src="https://cdn.tailwindcss.com"></script>    
     
     <script src="https://kit.fontawesome.com/5d7952c473.js" crossorigin="anonymous"></script>
   </body>

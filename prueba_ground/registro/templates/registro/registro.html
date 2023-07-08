@@ -5,75 +5,88 @@
 <link href="{% static 'core/css/registro.css'%}" rel="stylesheet">
 
 <br>
-<br>
-<br>
 
-<h2>Registro de Usuario</h2>
-<form method="post" class="user-registration-form">
-  {% csrf_token %}
-  <div class="form-group">
-    <label for="{{ form.email.id_for_label }}">Email:</label>
-    {{ form.email }}
-    <div class="error-message">
-      {{ form.email.errors }}
-    </div>
-  </div>
+<div class="container">
+  <h2 style="margin-top: 50px; font-size: 30px; margin-bottom: 10px;">Registro de Usuario</h2>
+  <div class="d-flex justify-content-between">
+    <div class="login-form" style="width: 600px;">
+      <form method="post" class="user-registration-form">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="{{ form.email.id_for_label }}">Email:</label>
+          {{ form.email }}
+          <div class="error-message">
+            {{ form.email.errors }}
+          </div>
+        </div>
 
-  <div class="form-group">
-    <label for="{{ form.password1.id_for_label }}">Contraseña:</label>
-    <div class="input-field">
-      {{ form.password1 }}
-      <div class="password-requirements">
-        <ul>
-          <li>Debe contener al menos 8 caracteres.</li>
-          <li>Debe contener al menos una letra mayúscula y una minúscula.</li>
-          <li>Debe contener al menos un número.</li>
-          <li>Puede contener caracteres especiales.</li>
-        </ul>
-      </div>
+        <div class="form-group">
+          <label for="{{ form.password1.id_for_label }}">Contraseña:</label>
+          <div class="input-field">
+            {{ form.password1 }}
+            <div class="password-requirements">
+              <ul>
+                <li>Debe contener al menos 8 caracteres.</li>
+                <li>Debe contener al menos una letra mayúscula y una minúscula.</li>
+                <li>Debe contener al menos un número.</li>
+                <li>Puede contener caracteres especiales.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="{{ form.password2.id_for_label }}">Confirmar contraseña:</label>
+          {{ form.password2 }}
+          <div class="password-requirements2">
+            <ul>
+              <li>Debe ser igual a la contraseña de arriba, de no ser así, ambas quedarán en blanco.</li>
+            </ul>
+            <div class="error-message">
+              {% if form.errors.password2 %}
+                {% for error in form.errors.password2 %}
+                  <span class="error">{{ error }}</span>
+                {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="{{ form.nombre.id_for_label }}">Nombre:</label>
+          {{ form.nombre }}
+        </div>
+        <div class="form-group">
+          <label for="{{ form.rut.id_for_label }}">RUT:</label>
+          {{ form.rut }}
+          <div class="error-message">
+            {{ form.rut.errors }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="{{ form.direccion.id_for_label }}">Dirección:</label>
+          {{ form.direccion }}
+        </div>
+        <div class="form-group">
+          <label for="{{ form.pais.id_for_label }}">País:</label>
+          {{ form.pais }}
+        </div>
+        <div class="form-group">
+          <label for="{{ form.codigo_postal.id_for_label }}">Código Postal:</label>
+          {{ form.cp }}
+        </div>
+        <button type="submit" class="btn btn-primary" id="submit-button" style="background-color: black; margin-bottom: 30px;">Registrarse</button>
+      </form>
+    </div>  
+    <div class="image-container">
+      <img src="{% static 'core/logo/back_imagen.png' %}" class="d-block w-100" alt="...">
     </div>
   </div>
-  <div class="form-group">
-    <label for="{{ form.password2.id_for_label }}">Confirmar contraseña:</label>
-    {{ form.password2 }}
-    <div class="password-requirements2">
-      <ul>
-        <li>Debe ser igual a la contraseña de arriba, de no ser así, ambas quedarán en blanco.</li>
-      </ul>
-      <div class="error-message">
-        {% if form.errors.password2 %}
-          {% for error in form.errors.password2 %}
-            <span class="error">{{ error }}</span>
-          {% endfor %}
-        {% endif %}
-      </div>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="{{ form.nombre.id_for_label }}">Nombre:</label>
-    {{ form.nombre }}
-  </div>
-  <div class="form-group">
-    <label for="{{ form.rut.id_for_label }}">RUT:</label>
-    {{ form.rut }}
-    <div class="error-message">
-      {{ form.rut.errors }}
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="{{ form.direccion.id_for_label }}">Dirección:</label>
-    {{ form.direccion }}
-  </div>
-  <div class="form-group">
-    <label for="{{ form.pais.id_for_label }}">País:</label>
-    {{ form.pais }}
-  </div>
-  <div class="form-group">
-    <label for="{{ form.codigo_postal.id_for_label }}">Código Postal:</label>
-    {{ form.cp }}
-  </div>
-  <button type="submit" class="btn btn-primary" id="submit-button">Registrarse</button>
-</form>
+</div>
+
+<style>
+  .image-container {
+    margin-left: auto;
+  }
+</style>
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

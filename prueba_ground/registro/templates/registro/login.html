@@ -6,8 +6,8 @@
 <br>
 <br>
 <div class="container">
-  <div class="d-flex justify-content-between">
-    <div class="login-form">
+  <div class="row justify-content-between">
+    <div class="col-lg-6">
       <h6 style="margin-top: 50px; font-size: 50px;">Iniciar sesión</h6>
       <br>
       <form method="post">
@@ -34,8 +34,8 @@
         </div>
       </form>
     </div>
-    <div class="image-container">
-      <img src="{% static 'core/logo/back_imagen.png' %}" class="d-block w-100" alt="...">
+    <div class="col-lg-6 mt-4 mt-lg-0">
+      <img src="{% static 'core/logo/back_imagen.png' %}" class="img-fluid" alt="...">
     </div>
   </div>
 </div>
@@ -56,12 +56,24 @@
 
 .login-form input[type="email"],
 .login-form input[type="password"] {
-    width: 600px;
+    width: 100%;
+    max-width: 600px;
 }
 
 .image-container {
-    margin-right: 300px;
+    margin-top: 50px;
 }
 
+@media (max-width: 767px) {
+  .login-form input[type="email"],
+  .login-form input[type="password"] {
+      width: 100%;
+      max-width: none;
+  }
+
+  .image-container {
+      margin-top: 20px;
+  }
+}
 </style>
 {% endblock %}

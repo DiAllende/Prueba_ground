@@ -1,15 +1,14 @@
 {% extends 'core/base.html' %}
-
-{% block content %}
 {% load static %}
+{% block content %}
 <link href="{% static 'core/css/registro.css'%}" rel="stylesheet">
 
 <br>
 
 <div class="container">
-  <h2 style="margin-top: 50px; font-size: 30px; margin-bottom: 10px;">Registro de Usuario</h2>
-  <div class="d-flex justify-content-between">
-    <div class="login-form" style="width: 600px;">
+  <h2 class="text-center" style="margin-top: 50px; font-size: 30px; margin-bottom: 10px;">Registro de Usuario</h2>
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
       <form method="post" class="user-registration-form">
         {% csrf_token %}
         <div class="form-group">
@@ -73,11 +72,12 @@
           <label for="{{ form.codigo_postal.id_for_label }}">Código Postal:</label>
           {{ form.cp }}
         </div>
-        <button type="submit" class="btn btn-primary" id="submit-button" style="background-color: black; margin-bottom: 30px;">Registrarse</button>
+        <button type="submit" class="btn btn-primary btn-block" id="submit-button"
+        style="margin-bottom: 30px;">Registrarse</button>
       </form>
     </div>  
-    <div class="image-container">
-      <img src="{% static 'core/logo/back_imagen.png' %}" class="d-block w-100" alt="...">
+    <div class="col-lg-6 mt-4 mt-lg-0">
+      <img src="{% static 'core/logo/back_imagen.png' %}" class="img-fluid" alt="...">
     </div>
   </div>
 </div>
@@ -86,8 +86,13 @@
   .image-container {
     margin-left: auto;
   }
-</style>
 
+  @media (max-width: 767px) {
+    .col-lg-6 {
+      margin-bottom: 20px;
+    }
+  }
+</style>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>

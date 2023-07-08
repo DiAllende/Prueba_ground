@@ -3,94 +3,78 @@
 {% block background %}{% load static %}{% static 'core/css/background.css'%}{% endblock %} 
 {% block content %}
  <!-- CAROUSEL -->
-  <div id="carouselExample" class="carousel slide">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-        aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-        aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-        aria-label="Slide 3"></button>
+ <div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'core/logo/imagen_carousel_uno.png' %}" class="d-block w-100" alt="...">
     </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="{% static 'core/imagenes/carousel1.png'%}" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="{% static 'core/imagenes/carousel2.png'%}" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <a href="obra_dos.html">
-          <img src="{% static 'core/imagenes/obra niño come palomas.png'%}" class="d-block w-100" alt="...">
-        </a>
-        <div class="carousel-caption d-none d-md-block">
-          <h5 style="font-size: 40;">Obra destacada de la semana!</h5>
-          <p style="font-size: 40;">presiona para conocer mas.</p>
-        </div>
-      </div>
+    <div class="carousel-item">
+      <a href="http://127.0.0.1:8000/obras/23/">
+        <img src="{% static 'core/logo/imagen_carousel_dos.png' %}" class="d-block w-100" alt="...">
+      </a>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+    <div class="carousel-item">
+      <a href="{%url 've'%}">
+        <img src="{% static 'core/logo/imagen_carousel_tres.png' %}" class="d-block w-100" alt="...">
+      </a>
+    </div>
   </div>
-  <!-- FIN CAROUSEL -->
-  <!-- PRODUCTOS -->
-<div class="container text-center">
-    <div class="row">
-        <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-            <h2 class="sr-only">Products</h2>
-            <div>
-                <h6 class="row" style="margin-left: 20px; font-size: 40; padding-bottom: 50px;">Obras con mayor venta</h6>
-            </div>
-            <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                {% for obra in obras|slice:":4" %}
-                    <div class="col" style="padding-bottom: 100px;">
-                        <a href="{% url 'details_obra' obra.pk %}" class="group">
-                            <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
-                                <img src="{{ obra.image.url }}" alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." style="max-width: 100%; height: 240px; object-fit: contain;">
-                            </div>
-                            <h3 class="mt-4 text-sm text-gray-700">{{ obra.Nombre }}</h3>
-                            <h3>{{ obra.Autor }}</h3>
-                            <p class="mt-1 text-lg font-medium text-gray-900">${{ obra.Precio }} clp.</p>
-                        </a>
-                    </div>
-                {% endfor %}
-          </div>
-          <div class="mt-8">
-            <a href="{% url 'obras' %}" class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">Ver mas obras</a>
-
-          </div>
-      </div>
-  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
-
-  <!-- FIN PRODUCTOS -->
-  <!-- Mas Productos-->
+  <!-- FIN CAROUSEL -->
+  <!-- IMAGEN -->
+  <div style="margin-top: -6px;">
+    <img src="{% static 'core/logo/banner.png' %}" alt="banner">
+  </div>
+  <!-- PRODUCTOS -->
   <div class="container text-center">
-    <div class="row align-items-start">
-      <div class="col">
-      </div>
-      <div class="col">
-        <div class="container text-center">
-          <div class="row">
-            <div class="col">
-            </div>
-            <div class="col-6">
-              <p>Tambien nos especializamos en otro tipo de ventas...</p>
-            </div>
-            <div class="col">
-            </div>
-          </div>
+    <div class="row">
+      <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+        <h2 class="sr-only">Products</h2>
+        <div style="position: relative; left: -5px; text-align: left;">
+          <h6 class="row" style="font-size: 30px; padding-bottom: 50px;">
+            <span style="font-family: 'Poppins', sans-serif;">Obras con mayor venta</span>
+          </h6>
         </div>
-          <a href="{%url 've'%}" class="btn btn-outline-secondary">Ir a mas ventas...</a>
-      </div>
-      <div class="col">
+        <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+          {% for obra in obras|slice:":4" %}
+          <div class="col" style="padding-bottom: 100px;">
+            <a href="{% url 'details_obra' obra.pk %}" class="group">
+              <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+                <img src="{{ obra.image.url }}" alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." class="h-full w-full object-cover object-center group-hover:opacity-75 obra-image">
+              </div>
+              <h3 class="mt-4 text-sm text-gray-700">{{ obra.Nombre }}</h3>
+              <h3>{{ obra.Autor }}</h3>
+              <p class="mt-1 text-lg font-medium text-gray-900">${{ obra.Precio }} clp.</p>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="mt-8">
+          <a type="submit" href="{% url 'obras' %}" class="mt-10 inline-block items-center justify-center rounded-md 
+          border border-transparent bg-black px-6 py-3 text-base font-medium text-white hover:bg-gray-800 
+          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Ver más obras</a>
+        </div>
       </div>
     </div>
-  </div><br>
+  </div>
+  
+  
+  
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+    .obra-image {
+      height: 300px;
+    }
+  </style>
+  <!-- FIN PRODUCTOS -->
 {% endblock %}
